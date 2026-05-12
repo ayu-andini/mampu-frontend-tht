@@ -1,4 +1,5 @@
 import { User } from "@/lib/user-types";
+import Link from "next/link";
 
 interface UsersTableProps {
     users: User[];
@@ -28,7 +29,10 @@ export default function UsersTable({ users }: UsersTableProps) {
                 key={user.id}
                 className="border-t border-gray-200 hover:bg-gray-50"
                 >
-                <td className="px-4 py-3">{user.name}</td>
+                <td className="px-4 py-3">
+                    <Link href={`/users/${user.id}`}>
+                    {user.name}
+                    </Link></td>
 
                 <td className="px-4 py-3">{user.email}</td>
 
