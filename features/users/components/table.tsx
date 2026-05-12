@@ -1,13 +1,15 @@
-import { User } from "@/lib/user-types";
 import Link from "next/link";
+import { UserActivity } from "@/lib/user-types";
 
 interface UsersTableProps {
-    users: User[];
+    users: UserActivity[];
 }
 
-export default function UsersTable({ users }: UsersTableProps) {
+export default function UsersTable({
+    users,
+}: UsersTableProps) {
     return (
-        <div className="overflow-x-auto rounded-xl border border-gray-200">
+    <div className="hidden overflow-x-auto rounded-2xl border border-gray-200 md:block">
         <table className="min-w-full bg-white">
             <thead className="bg-gray-100">
             <tr>
@@ -19,6 +21,15 @@ export default function UsersTable({ users }: UsersTableProps) {
                 </th>
                 <th className="px-4 py-3 text-left text-sm font-semibold">
                 Website
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-semibold">
+                Posts
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-semibold">
+                Completed
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-semibold">
+                Pending
                 </th>
             </tr>
             </thead>
@@ -32,19 +43,22 @@ export default function UsersTable({ users }: UsersTableProps) {
                 <td className="px-4 py-3">
                     <Link href={`/users/${user.id}`}>
                     {user.name}
-                    </Link></td>
-
-                <td className="px-4 py-3">{user.email}</td>
-
+                    </Link>
+                </td>
                 <td className="px-4 py-3">
-                    <a
-                    href={`https://${user.website}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-blue-600 hover:underline"
-                    >
+                    {user.email}
+                </td>
+                <td className="px-4 py-3">
                     {user.website}
-                    </a>
+                </td>
+                <td className="px-4 py-3">
+                    {user.totalPosts}
+                </td>
+                <td className="px-4 py-3">
+                    {user.completedTodos}
+                </td>
+                <td className="px-4 py-3">
+                    {user.pendingTodos}
                 </td>
                 </tr>
             ))}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ReactQueryProvider from "../lib/react-query-provider";
+import ReactQueryProvider from "@/lib/react-query-provider";
 
 export const metadata: Metadata = {
   title: "User Operations",
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html suppressHydrationWarning>
       <body>
         <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>

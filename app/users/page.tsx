@@ -1,58 +1,74 @@
 "use client";
 
 import { useMemo, useState } from "react";
-
 import Loading from "@/components/ui/loading";
-
-import UsersFilters from "@/features/users/components/users-filters";
-import UsersTable from "@/features/users/components/users-table";
-
-import { useUsers } from "@/features/users/hooks/use-users";
-
-import { filterUsers, sortUsers,
-} from "@/lib/user-filter";
+import UsersFilters from "@/features/users/components/filters";
+import UsersMobileCard from "@/features/users/components/mobile-card";
+import UsersTable from "@/features/users/components/table";
+import { useUsers } from "@/features/users/hooks/use";
+import { filterUsers, filterUsersWithPendingTodos, 
+    sortUsersByName, sortUsersByPendingTodos } 
+    from "@/lib/user-filter";
 
 export default function UsersPage() {
     const [search, setSearch] = useState("");
-
+    const [onlyPending, setOnlyPending] = useState(false);
+    const [sortByPending, setSortByPending] = useState(false);
     const { data, isLoading, isError } = useUsers();
 
-    const filteredUsers = useMemo(() => {
+    const processedUsers = useMemo(() => {
         if (!data) return [];
 
-        const filtered = filterUsers(data, search);
+        let users = filterUsers(data, search);
 
-        return sortUsers(filtered);
-    }, [data, search]);
+        if (onlyPending) {
+            users = filterUsersWithPendingTodos(users); }
+        if (sortByPending) {
+            return sortUsersByPendingTodos(users); }
+        return sortUsersByName(users);
+    }, [ data, search, onlyPending, sortByPending ]);
 
     if (isLoading) {
-        return <Loading />;
-    }
+        return <Loading />; }
 
     if (isError) {
         return (
-            <div className="py-10 text-center text-red-500">
-                Failed to load users.
-            </div>
-        );
-    }
+        <div className="py-20 text-center text-red-500">
+            Failed to load users workspace.
+        </div>
+        ); }
 
-return (
-        <main className="mx-auto max-w-6xl px-4 py-10">
-        <h1 className="mb-6 text-3xl font-bold">Users List</h1>
+    return (
+        <main className="mx-auto max-w-7xl px-4 py-10">
+        <div className="mb-8">
+            <h1 className="text-3xl font-bold">
+            User Operations Workspace
+            </h1>
+
+            <p className="mt-2 text-gray-500">
+            Monitor user activity, posts, and todo progress.
+            </p>
+        </div>
 
         <UsersFilters
             search={search}
+            onlyPending={onlyPending}
+            sortByPending={sortByPending}
             onSearchChange={setSearch}
+            onPendingChange={() =>setOnlyPending(!onlyPending)}
+            onSortChange={() =>setSortByPending(!sortByPending)}
         />
 
-        {filteredUsers.length === 0 ? (
-            <div className="rounded-xl border border-gray-200 py-10 text-center">
-            No users found.
+        {processedUsers.length === 0 ? (
+            <div className="rounded-2xl border border-gray-200 py-16 text-center">
+            No matching users found.
             </div>
         ) : (
-            <UsersTable users={filteredUsers} />
+            <>
+            <UsersTable users={processedUsers} />
+            <UsersMobileCard users={processedUsers} />
+            </>
         )}
         </main>
-        );
+    );
 }

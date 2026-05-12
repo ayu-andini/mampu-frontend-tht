@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import UserDetailCard from "@/features/users/components/user-detail-card";
+import UserDetailCard from "@/features/users/components/detail-card";
 import { getUserById } from "@/services/user-service";
 import type { Metadata } from "next";
+import UserPosts from "@/features/users/components/posts";
+import UserTodos from "@/features/users/components/todos";
+import { getUserPosts, getUserTodos } from "@/services/user-service";
 
 interface UserDetailsPageProps {
     params: Promise<{
@@ -36,8 +39,23 @@ export default async function UserDetailsPage({
 
     // lakukan fetching data di luar blok return
     let user;
+    let posts = [];
+    let todos = [];
+
     try {
-        user = await getUserById(id);
+        const [
+            userData,
+            userPosts,
+            userTodos,
+        ] = await Promise.all([
+            getUserById(id),
+            getUserPosts(id),
+            getUserTodos(id),
+        ]);
+
+        user = userData;
+        posts = userPosts;
+        todos = userTodos;
     } catch {
         // jika API error atau user tidak ditemukan
         notFound();
@@ -50,15 +68,23 @@ export default async function UserDetailsPage({
 
     // return JSX di luar blok try/catch
     return (
-        <main className="mx-auto max-w-4xl px-4 py-10">
-        <Link
+        <main className="mx-auto max-w-6xl px-4 py-10">
+            <Link
             href="/users"
             className="mb-6 inline-block text-sm text-blue-600 hover:underline"
-        >
+            >
             ← Back to list
-        </Link>
+            </Link>
 
-        <UserDetailCard user={user} />
+            <div className="space-y-6">
+            <UserDetailCard user={user} />
+
+            <div className="grid gap-6 lg:grid-cols-2">
+                <UserPosts posts={posts} />
+
+                <UserTodos todos={todos} />
+            </div>
+            </div>
         </main>
-    );
+        );
 }

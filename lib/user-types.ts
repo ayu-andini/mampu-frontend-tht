@@ -3,8 +3,8 @@ export interface User {
   name: string;
   username: string;
   email: string;
-  website: string;
   phone: string;
+  website: string;
 
   address: {
     street: string;
@@ -17,4 +17,24 @@ export interface User {
     name: string;
     catchPhrase: string;
   };
+}
+
+export interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+
+export interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+export interface UserActivity extends User {
+  totalPosts: number;
+  completedTodos: number;
+  pendingTodos: number;
 }

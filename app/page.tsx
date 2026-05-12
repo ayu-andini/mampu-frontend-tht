@@ -22,7 +22,7 @@ export default function Home() {
       </div>
 
       <footer className="absolute bottom-8 text-sm text-gray-400">
-        © 2026 PT Mampu Inovasi Digital - Frontend Task
+        © Ayu Andini - PT Mampu Inovasi Digital - Frontend THT 2026
       </footer>
     </main>
   );
