@@ -68,7 +68,8 @@ export default async function UserDetailsPage({
 
     // return JSX di luar blok try/catch
     return (
-        <main className="mx-auto max-w-6xl px-4 py-10">
+    <main className="min-h-screen bg-gray-50">
+        <div className="mx-auto max-w-6xl px-4 py-10">
             <Link
             href="/users"
             className="mb-6 inline-block text-sm text-blue-600 hover:underline"
@@ -81,10 +82,10 @@ export default async function UserDetailsPage({
 
             <div className="grid gap-6 lg:grid-cols-2">
                 <UserPosts posts={posts} />
-
                 <UserTodos todos={todos} />
             </div>
             </div>
-        </main>
+        </div>
+    </main>
         );
 }

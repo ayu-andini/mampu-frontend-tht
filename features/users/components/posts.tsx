@@ -26,17 +26,14 @@ export default function UserPosts({
         ) : (
             <div className="space-y-4">
             {posts.map((post) => (
-                <article
-                key={post.id}
-                className="rounded-xl border border-gray-200 p-4"
-                >
-                <h3 className="line-clamp-2 font-semibold capitalize">
-                    {post.title}
-                </h3>
-
-                <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-gray-600">
-                    {post.body}
-                </p>
+                <article key={post.id}
+                className="rounded-xl border border-gray-200 p-4" >
+                    <h3 className="text-base font-semibold capitalize">
+                        {post.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-gray-600">
+                        {post.body}
+                    </p>
                 </article>
             ))}
             </div>

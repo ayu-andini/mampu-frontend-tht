@@ -9,57 +9,63 @@ export default function UsersTable({
     users,
 }: UsersTableProps) {
     return (
-    <div className="hidden overflow-x-auto rounded-2xl border border-gray-200 md:block">
-        <table className="min-w-full bg-white">
-            <thead className="bg-gray-100">
-            <tr>
-                <th className="px-4 py-3 text-left text-sm font-semibold">
-                Name
+    <div className="hidden overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm lg:block">
+        <table className="min-w-full bg-white" aria-label="Users activity table">
+            <thead className="bg-gray-50">
+            <tr className="border-t border-gray-100 transition hover:bg-gray-50">
+                <th scope="col" className="px-4 py-3 text-left text-sm font-semibold">
+                    Name
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold">
-                Email
+                <th scope="col" className="px-4 py-3 text-left text-sm font-semibold">
+                    Email
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold">
-                Website
+                <th scope="col" className="px-4 py-3 text-left text-sm font-semibold">
+                    Website
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold">
-                Posts
+                <th scope="col" className="px-4 py-3 text-left text-sm font-semibold">
+                    Posts
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold">
-                Completed
+                <th scope="col" className="px-4 py-3 text-left text-sm font-semibold">
+                    Completed
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold">
-                Pending
+                <th scope="col" className="px-4 py-3 text-left text-sm font-semibold">
+                    Pending
                 </th>
             </tr>
             </thead>
 
             <tbody>
             {users.map((user) => (
-                <tr
-                key={user.id}
-                className="border-t border-gray-200 hover:bg-gray-50"
-                >
-                <td className="px-4 py-3">
-                    <Link href={`/users/${user.id}`}>
-                    {user.name}
+                <tr key={user.id}
+                className="border-t border-gray-200 hover:bg-gray-50">
+                    <td className="px-6 py-5">
+                    <Link href={`/users/${user.id}`}
+                        className="group flex items-center gap-4">
+                        <div>
+                        <p className="font-semibold text-gray-900 group-hover:text-blue-600">
+                            {user.name}
+                        </p>
+                        <p className="text-sm text-gray-400">
+                            @{user.username}
+                        </p>
+                        </div>
                     </Link>
-                </td>
-                <td className="px-4 py-3">
-                    {user.email}
-                </td>
-                <td className="px-4 py-3">
-                    {user.website}
-                </td>
-                <td className="px-4 py-3">
-                    {user.totalPosts}
-                </td>
-                <td className="px-4 py-3">
-                    {user.completedTodos}
-                </td>
-                <td className="px-4 py-3">
-                    {user.pendingTodos}
-                </td>
+                    </td>
+                    <td className="px-4 py-3">
+                        {user.email}
+                    </td>
+                    <td className="px-4 py-3">
+                        {user.website}
+                    </td>
+                    <td className="px-6 py-3 items-center justify-center">
+                        {user.totalPosts}
+                    </td>
+                    <td className="px-10 py-3">
+                        {user.completedTodos}
+                    </td>
+                    <td className="pl-10 py-3">
+                        {user.pendingTodos}
+                    </td>
                 </tr>
             ))}
             </tbody>
