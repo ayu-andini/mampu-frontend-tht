@@ -54,7 +54,7 @@ export default function UsersStats({
     ];
 
     return (
-        <div className="mb-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mb-8 grid gap-4 grid-cols-2 xl:grid-cols-4">
         {stats.map((item) => {
             const Icon = item.icon;
 
@@ -71,9 +71,7 @@ export default function UsersStats({
                         </h3>
                     </div>
                     <div className="rounded-xl bg-white p-3 shadow-sm">
-                        <Icon
-                        className={`h-6 w-6 ${item.iconColor}`}
-                        />
+                        <Icon className={`h-6 w-6 ${item.iconColor}`} />
                     </div>
                 </div>
             </div>

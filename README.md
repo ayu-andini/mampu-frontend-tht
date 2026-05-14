@@ -1,36 +1,182 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mampu User Operations Workspace
+A modern and responsive User Operations dashboard built with **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **Jest + React Testing Library**.
 
-## Getting Started
+This project was developed as part of a Frontend Engineer Take Home Test (THT) to demonstrate:
+- scalable frontend architecture
+- responsive UI implementation
+- data fetching & state handling
+- testing practices
+- clean user experience design
 
-First, run the development server:
+---
+# ✨ Features
+## Users List Page (`/users`)
+- Fetch users from JSONPlaceholder API
+- Display users in responsive desktop table & mobile cards
+- Search users by name/email
+- Filter users with >10 pending todos
+- Sort users by pending todos
+- Display derived activity signals
+- Loading and empty states
+- Error handling
+- Responsive modern UI
 
+---
+## User Details Page (`/users/[id]`)
+- Detailed user profile
+- Contact, company and address information
+- User posts and todos section
+- Invalid user handling
+
+---
+## UI / UX Enhancements
+- Modern dashboard-style design
+- Fully responsive layout
+- Accessible table semantics
+- Focus states
+- Hover interactions
+- Empty state messaging
+- Clean mobile experience
+
+---
+## Testing
+Implemented using:
+- Jest
+- React Testing Library (RTL)
+
+Covered test cases:
+- Users rendering
+- Derived activity signals
+- Search filtering
+- Pending filter
+- Empty state
+- User details rendering
+- Posts & todos rendering
+- Invalid/missing data handling
+
+---
+# 🛠️ Tech Stack
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- React Query
+- Jest
+- React Testing Library
+- Lucide React Icons
+
+---
+# 📁 Project Structure
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+app/
+└── users/
+    ├── page.tsx
+    └── [id]/
+    └── error.tsx
+    └── loading.tsx
+    └── not-found.tsx
+    └── page.tsx
+components/
+└── ui/
+   ├── input.tsx
+   └── loading.tsx
+features/
+└── users/
+    ├── components/
+    └── hooks/
+lib/
+├── react-query-provider.tsx
+├── user-filter.ts
+└── user-types.ts
+services/
+└── user-service.ts
+tests/
+├── mock-users.ts
+├── setup.ts
+├── user-detail.test.tsx
+└── users-page.test.tsx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 1. Clone Repository
+```bash
+git clone https://github.com/YOUR_USERNAME/mampu-user-operation-tht.git
+```
 
-## Learn More
+---
+## 2. Install Dependencies
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
+## 3. Run Development Server
+```bash
+npm run dev
+```
+Open:
+```bash
+http://localhost:3000/users
+http://localhost:3000/users/:id
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
+# 🧪 Run Tests
+```bash
+npm test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Expected result:
+```bash
+PASS tests/users-page.test.tsx
+PASS tests/user-detail.test.tsx
+```
+<p align="left">
+  <img src="./public/test-result.png" width="300" />
+</p>
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 🌐 APIs Used
+JSONPlaceholder:
+- https://jsonplaceholder.typicode.com/users
+- https://jsonplaceholder.typicode.com/posts
+- https://jsonplaceholder.typicode.com/todos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+# 📸 Screenshots
+
+## Users Page
+<p align="left">
+  <img src="./public/users-page.png" width="500" />
+</p>
+
+## User Detail Page
+<p align="left">
+  <img src="./public/user-detail.png" width="500" />
+</p>
+
+## Users Page - Mobile Responsive View
+<p align="left">
+  <img src="./public/users-mobile.png" width="150" />
+</p>
+
+## User Detail Page - Mobile Responsive View
+<p align="left">
+  <img src="./public/detail-mobile.png" width="150" />
+</p>
+
+---
+
+# 📌 Notes
+This project focuses on:
+- clean architecture,
+- maintainable component structure,
+- modern responsive UI,
+- frontend engineering best practices,
+- and realistic user experience implementation.
+
+---
+**👩‍💻 Author** - Ayu Andini - Frontend Engineer Candidate
