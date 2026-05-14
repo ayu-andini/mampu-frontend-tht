@@ -8,6 +8,21 @@ interface UsersTableProps {
 export default function UsersTable({
     users,
 }: UsersTableProps) {
+    // EMPTY STATE
+    if (users.length === 0) {
+        return (
+        <div className="rounded-2xl border border-dashed border-gray-300 bg-white py-16 text-center">
+            <h2 className="text-lg font-semibold text-gray-700">
+            No matching users found
+            </h2>
+
+            <p className="mt-2 text-sm text-gray-500">
+            Try adjusting your search or filters.
+            </p>
+        </div>
+        );
+    }
+    
     return (
     <div className="hidden overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm lg:block">
         <table className="min-w-full bg-white" aria-label="Users activity table">
